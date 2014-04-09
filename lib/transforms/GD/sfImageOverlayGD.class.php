@@ -322,6 +322,10 @@ class sfImageOverlayGD extends sfImageTransformAbstract
     $overlay_h   = $this->overlay->getHeight();
     $overlay_img = $this->overlay->getAdapter()->getHolder();
     
+    // support transparent overlay
+    $black = imagecolorallocate($canvas_img, 0, 0, 0);
+    imagecolortransparent($canvas_img, $black);
+    
     // copy and merge the overlay image and the canvas image:
     imagecopy($canvas_img, $overlay_img, $this->left,$this->top,0,0, $overlay_w, $overlay_h);
 
